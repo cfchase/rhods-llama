@@ -13,4 +13,4 @@ spec:
       modelFormat:
         name: caikit
       runtime: caikit-runtime
-      storageUri: s3://modelmesh-example-models/llm/models
+      storageUri: s3://rhods-public/demo-models/flan-t5-small-caikit
