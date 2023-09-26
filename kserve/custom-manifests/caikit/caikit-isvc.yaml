@@ -13,4 +13,4 @@ spec:
       modelFormat:
         name: caikit
       runtime: caikit-runtime
-      storageUri: s3://rhods-public/demo-models/flan-t5-small-caikit
+      storageUri: s3://rhods-public/demo-models/Llama-2-7b-chat-hf

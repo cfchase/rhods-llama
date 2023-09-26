@@ -19,8 +19,58 @@ spec:
       requests:
         cpu: 4
         memory: 8Gi
+        nvidia.com/gpu: 1
+      limits:
+        nvidia.com/gpu: 1
+    volumeMounts:
+    - mountPath: /shared_model_storage/transformers_cache
+      name: cache-volume
+    - name: runtime-config
+      subPath: runtime_config.yaml
+      mountPath: "/caikit/config/caikit-tgis.yml"
+  volumes:
+  - name:  cache-volume
+    emptyDir:
+      sizeLimit: 180Gi
+  - name: runtime-config
+    configMap:
+      name: runtime-config
   multiModel: false
   supportedModelFormats:
   # Note: this currently *only* supports caikit format models
   - autoSelect: true
     name: caikit
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: runtime-config
+data:
+  runtime_config.yaml: |
+    jvm_options: []
+
+    runtime:
+      batching:
+        standalone-model:
+          size: 0 # Set to batch size for batching
+      server_thread_pool_size: 16
+
+    model_management:
+      initializers:
+        default:
+          type: LOCAL
+          config:
+            backend_priority:
+              - type: TGIS
+                config:
+                  local:
+                    load_timeout: 2000
+                    grpc_port: null
+                    http_port: null
+                    health_poll_delay: 2.0
+                    num_gpus: 1
+                  connection:
+                    hostname: ""
+                    ca_cert_file: null
+                    client_cert_file: null
+                    client_key_file: null
