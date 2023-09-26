@@ -1,6 +1,6 @@
 # Script-based installation of Kserve and dependencies
 
-Note: You have the alternative option of installing the KServe/Caikit/TGIS stack by using [Step-by-step commands](../../kserve/install-manual.md).
+Note: You have the alternative option of installing the KServe/Caikit/TGIS stack by using [Step-by-step commands](../install-manual.md).
 
 **Prerequisites**
 
@@ -30,17 +30,17 @@ Note: You have the alternative option of installing the KServe/Caikit/TGIS stack
      ~~~
      export TARGET_OPERATOR=odh
      ~~~
-  
+
    **CHECK_UWM:** (optional) To skip the message that checks the User Workload Configmap, set the value to `false`.
      ~~~
      export CHECK_UWM=false
      ~~~
-   
+
    **CUSTOM_MANIFESTS_URL:** (optional) To use a custom manifest, set the value to the custom manifest URL, for example:
      ~~~
      export CUSTOM_MANIFESTS_URL=https://github.com/opendatahub-io/odh-manifests/tarball/master
      ~~~
-   
+
 
 3. Run the script to install Kserve including its dependencies.
 

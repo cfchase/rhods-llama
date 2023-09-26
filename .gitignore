@@ -1,4 +1,10 @@
 .ignore/
+kserve/
+knative-kserve/
+odh-manifests/
+*-current.yaml
+.cache/
+kustomize/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
