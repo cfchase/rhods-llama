@@ -13,9 +13,9 @@ spec:
     codeflare:
       managementState: Removed
     dashboard:
-      managementState: Removed
+      managementState: Managed
     datasciencepipelines:
-      managementState: Removed
+      managementState: Managed
     kserve:
       managementState: Managed
     modelmeshserving:
@@ -23,4 +23,4 @@ spec:
     ray:
       managementState: Removed
     workbenches:
-      managementState: Removed 
+      managementState: Managed
