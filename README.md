@@ -12,3 +12,9 @@
    ~~~
    ./scripts/test/deploy-model.sh
    ~~~
+
+2. Test the endpoint.
+
+   ~~~
+   ./scripts/test/grpc-call.sh
+   ~~~
