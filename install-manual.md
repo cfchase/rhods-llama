@@ -17,7 +17,7 @@ Note: You have the alternative option of installing the KServe/Caikit/TGIS stack
    export TARGET_OPERATOR=rhods
    ~~~
 
-   For the OpenDataHub Operator: 
+   For the OpenDataHub Operator:
    ~~~
    export TARGET_OPERATOR=odh
    ~~~
@@ -27,9 +27,9 @@ Note: You have the alternative option of installing the KServe/Caikit/TGIS stack
 
    ~~~
    git clone https://github.com/opendatahub-io/caikit-tgis-serving
-   
+
    cd caikit-tgis-serving/demo/kserve
-   
+
    source ./scripts/env.sh
    export TARGET_OPERATOR_TYPE=$(getOpType $TARGET_OPERATOR)
    export TARGET_OPERATOR_NS=$(getOpNS)
@@ -63,9 +63,9 @@ Note: You have the alternative option of installing the KServe/Caikit/TGIS stack
    ~~~
    oc create ns ${KSERVE_OPERATOR_NS}
    oc create ns knative-serving
-   oc -n istio-system apply -f custom-manifests/service-mesh/smmr-${TARGET_OPERATOR_TYPE}.yaml 
+   oc -n istio-system apply -f custom-manifests/service-mesh/smmr-${TARGET_OPERATOR_TYPE}.yaml
    oc apply -f custom-manifests/service-mesh/peer-authentication.yaml
-   oc apply -f custom-manifests/service-mesh/peer-authentication-${TARGET_OPERATOR_TYPE}.yaml 
+   oc apply -f custom-manifests/service-mesh/peer-authentication-${TARGET_OPERATOR_TYPE}.yaml
    ~~~
 
    Note: These commands use PeerAuthentications to enable mutual TLS (mTLS) according to [Openshift Serverless Documentation](https://access.redhat.com/documentation/en-us/red_hat_openshift_serverless/1.28/html/serving/configuring-custom-domains-for-knative-services#serverless-domain-mapping-custom-tls-cert_domain-mapping-custom-tls-cert).
@@ -101,7 +101,7 @@ Note: You have the alternative option of installing the KServe/Caikit/TGIS stack
    export BASE_DIR=/tmp/kserve
    export BASE_CERT_DIR=${BASE_DIR}/certs
    export DOMAIN_NAME=$(oc get ingresses.config.openshift.io cluster -o jsonpath='{.spec.domain}' | awk -F'.' '{print $(NF-1)"."$NF}')
-   export COMMON_NAME=$(oc get ingresses.config.openshift.io cluster -o jsonpath='{.spec.domain}'|sed 's/apps.//')
+   export COMMON_NAME=$(oc get ingresses.config.openshift.io cluster -o jsonpath='{.spec.domain}')
 
    mkdir ${BASE_DIR}
    mkdir ${BASE_CERT_DIR}
@@ -119,8 +119,8 @@ Note: You have the alternative option of installing the KServe/Caikit/TGIS stack
 9. Apply the Istio monitoring resources.
 
    ~~~
-   oc apply -f ./custom-manifests/service-mesh/istiod-monitor.yaml 
-   oc apply -f ./custom-manifests/service-mesh/istio-proxies-monitor.yaml 
+   oc apply -f ./custom-manifests/service-mesh/istiod-monitor.yaml
+   oc apply -f ./custom-manifests/service-mesh/istio-proxies-monitor.yaml
    ~~~
 
 10. Apply the cluster role to allow Prometheus access.
@@ -132,10 +132,10 @@ Note: You have the alternative option of installing the KServe/Caikit/TGIS stack
      ~~~
      oc create ns ${TARGET_OPERATOR_NS}
      oc create -f custom-manifests/opendatahub/${TARGET_OPERATOR}-operators-2.x.yaml
-  
+
      sleep 10
-     oc wait --for=condition=ready pod -l name=rhods-operator -n ${TARGET_OPERATOR_NS} --timeout=300s 
-   
+     oc wait --for=condition=ready pod -l name=rhods-operator -n ${TARGET_OPERATOR_NS} --timeout=300s
+
      oc create -f custom-manifests/opendatahub/kserve-dsc.yaml
      ~~~
 
